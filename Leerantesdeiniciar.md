@@ -1,5 +1,6 @@
 # salkantayDeskApp
-****** Esto es para el incio del proyecto  *************
+# Esto es para el incio del proyecto 
+
 Autor:  Jesus Pineda 
 
 Para iniciar el archivo de la apliacion se tiene que intalar la carpeta node_modules
