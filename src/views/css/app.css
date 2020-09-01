@@ -1,0 +1,33 @@
+@import "menu.css";
+/******
+
+Index Css
+
+
+*********/
+body{
+  margin: 0;
+  padding: 0;
+  font-family: 'Maven Pro', sans-serif;
+  background-color: #f2f1ef;
+}
+.icon-svg {
+  width: 80px;
+}
+.buttom:hover{
+  cursor: pointer;
+  box-shadow:  5px 1px 8px #c3c3c3;
+}
+.icon-center{
+    border-radius: 10px;
+    font-size: 60px;
+    color: #f1aebc;
+    height: 200px;
+    box-sizing: border-box;
+    border: 7px solid transparent;
+    background-clip:padding-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+

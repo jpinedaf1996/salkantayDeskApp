@@ -1,0 +1,44 @@
+<!-- 
+    Autor Jesus pineda / "Otro autor"
+    14/08/2020
+    Proposito de esta pagina: Menu principal de inicio 
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>    
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="../../node_modules/@fortawesome\fontawesome-free\css\all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
+    <title><%= name %></title>
+</head>
+<body>     
+    <div style="width: 70%;"  class="container">        
+        <div class="row">
+            <div  class="col-md-12">
+                <h1 class="text-center icon-center"><img src="../../image/logo.jpg" width="75px" alt="logo"><%= name %></h1>
+            </div>
+            <div id="reports" class="buttom col-md-3 icon-center  bg-info">
+                <a href="reportes.ejs"><img class="icon-svg" src="../../image/monitor.svg"  alt="reports"></a>
+            </div>
+            <div id="stock" class="buttom col-md-3 icon-center  bg-danger"> 
+                <a href="menu.ejs"><img class="icon-svg" src="../../image/factory.svg"  alt="stock" ></a>   
+            </div>
+            <div id="customers" class="buttom col-md-6 icon-center   bg-warning">
+                <a href="ventas.ejs"><img class="icon-svg" src="../../image/values.svg"  alt="customers"></a>
+            </div>
+            <div id="sales" class="buttom col-md-6 icon-center   bg-secondary">
+                <a href="ventas.ejs"><img class="icon-svg" src="../../image/money.svg"  alt="sales"></a>   
+            </div>
+            <div id="pending-orders" class="buttom col-md-3 icon-center  bg-success">
+                <a href="menu.ejs"><img class="icon-svg" src="../../image/invoice.svg"  alt="orders"></a>  
+            </div>
+            <div id="config" class="buttom col-md-3 icon-center  bg-dark">
+                <a href="menu.ejs"><img class="icon-svg" src="../../image/config.svg"  alt="config"></a>
+            </div>
+        </div>
+    </div>
+    </body>
+    </html>
