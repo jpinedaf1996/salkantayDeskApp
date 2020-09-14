@@ -1,6 +1,6 @@
 const {app,BrowserWindow}=require('electron');
 require('electron-reload')(__dirname);
-const ejse = require('ejs-electron')
+const ejse = require('ejs-electron');
 
 ejse.data({name : 'SALKANTAY CAFE'});
 

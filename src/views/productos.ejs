@@ -1,0 +1,70 @@
+<%- include('./templates/header'); -%>
+<!-- 
+                Autor Jesus pineda / "Otro autor"
+                13/08/2020
+                Proposito de esta pagina: Esta es la pagina de productos 
+                aqui se gestionanran los diferente produstos 
+              -->
+<!-- Aqui Agregar el contenido para las paginas del sistemas  -->
+
+<div style="width: 100%; text-align: center; margin-top: 15px!important;">
+  <h1>CATEGORIAS</h1>
+</div>
+<!-- CARDS -->
+<div class="main-container-list">
+  <div id="container-list" class="row text-center justify-content-center">
+
+    <div class="card" style="width: 16rem;">
+      <img class="card-img-top" height="200px" src="../../image/postres.jpg" alt="Card image cap">
+      <div class="card-body">
+        <p class="card-text"><strong>POSTRES</strong></p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<%- include('./templates/scripts.ejs'); -%>
+<script>
+  (async () => {
+    
+    const url = 'http://localhost:3000/apiv0.1/category/';
+    const content = document.getElementById('container-list');
+
+    let response = await getDatos(url);
+
+    response.map((category) => {
+      const categoria = `
+              <div class="card" style="width: 16rem;">
+                <img class="card-img-top" height="200px" src="${category.imagen}" alt="Card image cap">
+                <div class="card-body">
+                  <p class="card-text"><strong>${category.categoria}</strong></p>
+                </div>
+              </div>                
+        `;
+      content.insertAdjacentHTML('beforeEnd', categoria);
+    })
+  })();
+
+  async function getDatos(url) {
+    try {
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'token': localStorage.getItem("token"),
+        }
+
+      });
+      return response.json();
+    } catch (error) {
+
+    }
+  }
+
+
+
+</script>
+</body>
+</html>

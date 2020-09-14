@@ -5,40 +5,144 @@
 -->
 <!DOCTYPE html>
 <html lang="es">
-<head>    
+
+<head>
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="../../node_modules/@fortawesome\fontawesome-free\css\all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
+    <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <title><%= name %></title>
 </head>
-<body>     
-    <div style="width: 70%;"  class="container">        
-        <div class="row">
-            <div  class="col-md-12">
-                <h1 class="text-center icon-center"><img src="../../image/logo.jpg" width="75px" alt="logo"><%= name %></h1>
-            </div>
-            <div id="reports" class="buttom col-md-3 icon-center  bg-info">
-                <a href="reportes.ejs"><img class="icon-svg" src="../../image/monitor.svg"  alt="reports"></a>
-            </div>
-            <div id="stock" class="buttom col-md-3 icon-center  bg-danger"> 
-                <a href="menu.ejs"><img class="icon-svg" src="../../image/factory.svg"  alt="stock" ></a>   
-            </div>
-            <div id="customers" class="buttom col-md-6 icon-center   bg-warning">
-                <a href="ventas.ejs"><img class="icon-svg" src="../../image/values.svg"  alt="customers"></a>
-            </div>
-            <div id="sales" class="buttom col-md-6 icon-center   bg-secondary">
-                <a href="ventas.ejs"><img class="icon-svg" src="../../image/money.svg"  alt="sales"></a>   
-            </div>
-            <div id="pending-orders" class="buttom col-md-3 icon-center  bg-success">
-                <a href="menu.ejs"><img class="icon-svg" src="../../image/invoice.svg"  alt="orders"></a>  
-            </div>
-            <div id="config" class="buttom col-md-3 icon-center  bg-dark">
-                <a href="menu.ejs"><img class="icon-svg" src="../../image/config.svg"  alt="config"></a>
+
+<body>
+    <!-- Modal -->
+    <div class="modal fade show" id="myModal" tabindex="-1" role="dialog" aria-labelledby="locModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="locModalLabel">Inicio de sesion</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="login">
+                        <div class="form-group">
+                            <label for="user">Nombre de usuario</label>
+                            <input name="user" id="user" required type="text" class="form-control" id="city">
+                        </div>
+                        <div class="form-group">
+                            <label for="pass"> Contraseña </label>
+                            <input name="pass" id="pass" required type="password" class="form-control" id="state">
+                        </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button id="close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input class="btnLogin" id="btnLogin" type="submit" value="Enviar">
+                </div>
+                </form>
             </div>
         </div>
     </div>
-    </body>
-    </html>
+    <div style="width: 70%;" class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center icon-center"><img src="../../image/logo.jpg" width="75px" alt="logo"><%= name %>
+                </h1>
+            </div>
+            <div id="reportes" onclick="openNewWindow(this.id)" class="open buttom col-md-3 icon-center  bg-info">
+                <img class="icon-svg" src="../../image/monitor.svg" alt="reports">
+            </div>
+            <div id="productos" onclick="openNewWindow(this.id)" class="open buttom col-md-3 icon-center  bg-danger">
+                <img class="icon-svg" src="../../image/factory.svg" alt="stock">
+            </div>
+            <div id="clientes" onclick="openNewWindow(this.id)" class="open buttom col-md-6 icon-center   bg-warning">
+                <img class="icon-svg" src="../../image/values.svg" alt="customers">
+            </div>
+            <div id="ventas" onclick="openNewWindow(this.id)" class="open buttom col-md-6 icon-center   bg-secondary">
+                <img class="icon-svg" src="../../image/money.svg" alt="sales">
+            </div>
+            <div id="ordenes" onclick="openNewWindow(this.id)" class="open buttom col-md-3 icon-center  bg-success">
+                <img class="icon-svg" src="../../image/invoice.svg" alt="orders">
+            </div>
+            <div id="config" onclick="openNewWindow(this.id)" class="open buttom col-md-3 icon-center  bg-dark">
+                <img class="icon-svg" src="../../image/config.svg" alt="config">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const url = 'http://localhost:3000/apiv0.1/users/validarToken';
+
+        const validarToken = async () => {
+            try {
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'token': localStorage.getItem("token")
+                    }
+
+                });
+                return response.json();
+            } catch (error) {
+
+            }
+        }
+        const openNewWindow = async (id) => {
+            
+            if (await validarToken() === 'ok') {
+                switch (id) {
+                    case 'reportes':
+                        window.location.href = "reportes.ejs";
+                        break;
+                    case 'productos':
+                        window.location.href = "productos.ejs";
+                        break;
+                    default:
+                        break;
+                }
+            } else {
+                $('#myModal').modal('show');
+                const formElement = document.getElementById('login');
+
+                formElement.addEventListener("submit", async (event) => {
+                    event.preventDefault();
+
+                    let user = document.getElementById('user');
+                    let pass = document.getElementById('pass');
+
+                    const response = await fetch('http://localhost:3000/apiv0.1/users/login', {
+                        method: 'POST',
+                        body: new URLSearchParams({
+                            'usuario': user.value,
+                            'pass': pass.value,
+                        })
+                    });
+                    let result = await response.json();
+
+                    if (result.error) {
+                        console.log(result.error);
+                    }
+                    else {
+                        localStorage.setItem("token", result.success);
+                        openNewWindow(id);
+                        
+                        
+                    }
+                });
+
+            }
+
+        }
+
+    </script>
+</body>
+
+</html>

@@ -5,11 +5,29 @@ Css Menu
 *********/
 :root{
     --side-menu: #0f0f0f;
-    --nav-bar:rgb(255, 6, 6);
+    --nav-bar:rgb(236, 0, 98);
     --text-side:#ffff;
     --hover-boder:var(--nav-bar);
     --bg-hover:rgba(59, 59, 59, 0.301);
+    --body-color:#f2f1ef,
 }
+.card{
+    margin: 8px;
+    cursor: pointer;
+}
+.card:hover{
+    cursor: pointer;
+    box-shadow:  5px 1px 8px #c3c3c3;
+  }
+.main-container-list{
+    background-color: var(--body-color);
+    width: 90%;
+    height: auto;
+    margin-top: 15px!important;
+    margin: auto;
+    padding: 0
+}
+
 .sidebar-menu-color{
     border: none;
     background-color:  var(--side-menu);

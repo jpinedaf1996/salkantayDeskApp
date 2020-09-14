@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
     <title><%= name %></title>
     
+    
 </head>
 <body>  
     <div class="main-content"> 
@@ -25,27 +26,28 @@
                         <div class="col-md-12 tittle">
                             <a  href="index.ejs"><%= name %></a>
                         </div>
-                        <div class="option col-md-12">
+                        <div id="productos" onclick="openNewWindow(this.id)"  class="option col-md-12">
+                            <i class="fas fa-box-open"></i>
+                            <span>Productos</span>
+                        </div>
+                        <div id="reportes"  onclick="openNewWindow(this.id)"  class="option col-md-12">
                             <i class="fas fa-chart-bar"></i> 
                             <span>Reportes</span>
                         </div>
-                        <div class="option col-md-12">
+                        <div onclick="openNewWindow(this.id)"   class="option col-md-12">
                             <i class="fas fa-money-bill-alt"></i>
                             <span>Ventas</span>
                         </div>
-                        <div class="option col-md-12"> 
+                        <div onclick="openNewWindow(this.id)"   class="option col-md-12"> 
                             <i class="fas fa-users"></i>
                             <span>Clientes</span>
                         </div>
-                        <div class="option col-md-12">
-                            <i class="fas fa-box-open"></i>
-                            <span>Stock</span>
-                        </div>
-                        <div class="option col-md-12">
+                        
+                        <div onclick="openNewWindow(this.id)"  class="option col-md-12">
                             <i class="fas fa-file-invoice-dollar"></i>
                             <span>&nbspOrdenes</span> 
                         </div> 
-                        <div class="option col-md-12">
+                        <div onclick="openNewWindow(this.id)"  class="option col-md-12">
                             <i class="fas fa-cog"></i>
                             <span>Configuraciones</span>  
                         </div>     
@@ -56,5 +58,4 @@
                     <i style="font-size: 30px; cursor: pointer;" id="btnMenu" class="fas fa-bars text-white"></i>
                     <img class="navbar-brand" src="../../image/logo.jpg" width="30px" alt="" srcset="">
                 </nav>  
-               
                 <!-- No editar nada mas desde aqui eto se refleja en las demas paginas  -->
