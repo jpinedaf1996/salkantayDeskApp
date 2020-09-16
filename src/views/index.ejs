@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
     <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
     <title><%= name %></title>
 </head>
 
@@ -39,6 +40,9 @@
                         <div class="form-group">
                             <label for="pass"> Contraseña </label>
                             <input name="pass" id="pass" required type="password" class="form-control" id="state">
+                        </div>
+                        <div id="alert">
+
                         </div>
 
                 </div>
@@ -76,49 +80,27 @@
             </div>
         </div>
     </div>
-
+    <script src="js/routes.js"></script>
     <script>
-        const url = 'http://localhost:3000/apiv0.1/users/validarToken';
 
-        const validarToken = async () => {
-            try {
-                const response = await fetch(url, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'token': localStorage.getItem("token")
-                    }
-
-                });
-                return response.json();
-            } catch (error) {
-
-            }
-        }
         const openNewWindow = async (id) => {
-            
-            if (await validarToken() === 'ok') {
-                switch (id) {
-                    case 'reportes':
-                        window.location.href = "reportes.ejs";
-                        break;
-                    case 'productos':
-                        window.location.href = "productos.ejs";
-                        break;
-                    default:
-                        break;
-                }
-            } else {
-                $('#myModal').modal('show');
+
+            let responseToken = await validarToken();
+
+            if (responseToken.error) {
+
                 const formElement = document.getElementById('login');
 
+                $('#myModal').modal('show');
+
                 formElement.addEventListener("submit", async (event) => {
+
                     event.preventDefault();
 
                     let user = document.getElementById('user');
                     let pass = document.getElementById('pass');
 
-                    const response = await fetch('http://localhost:3000/apiv0.1/users/login', {
+                    const response = await fetch(urluser + 'login', {
                         method: 'POST',
                         body: new URLSearchParams({
                             'usuario': user.value,
@@ -128,15 +110,22 @@
                     let result = await response.json();
 
                     if (result.error) {
-                        console.log(result.error);
+                        const content = document.getElementById('alert');
+                        const alert = `
+                            <div class="alert alert-primary" role="alert">
+                                ${result.error}
+                            </div>               
+                        `;
+                        content.innerHTML= alert;
                     }
                     else {
-                        localStorage.setItem("token", result.success);
-                        openNewWindow(id);
-                        
-                        
+                        sessionStorage.setItem("token", result.success);
+                        redirect(id);
+
                     }
                 });
+            } else {
+                redirect(id);
 
             }
 

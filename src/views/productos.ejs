@@ -23,19 +23,17 @@
 
   </div>
 </div>
-
-
 <%- include('./templates/scripts.ejs'); -%>
 <script>
   (async () => {
-    
-    const url = 'http://localhost:3000/apiv0.1/category/';
     const content = document.getElementById('container-list');
 
-    let response = await getDatos(url);
+    let response = await getDatos();
 
     response.map((category) => {
       const categoria = `
+
+      
               <div class="card" style="width: 16rem;">
                 <img class="card-img-top" height="200px" src="${category.imagen}" alt="Card image cap">
                 <div class="card-body">
@@ -47,13 +45,13 @@
     })
   })();
 
-  async function getDatos(url) {
+  async function getDatos() {
     try {
-      const response = await fetch(url, {
+      const response = await fetch(urlCategory, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'token': localStorage.getItem("token"),
+          'token': sessionStorage.getItem("token"),
         }
 
       });
@@ -67,4 +65,5 @@
 
 </script>
 </body>
+
 </html>
