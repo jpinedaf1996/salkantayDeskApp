@@ -1,0 +1,73 @@
+@import "menu.css";
+
+/******
+
+Index Css
+
+
+*********/
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Maven Pro', sans-serif;
+    background-color: #2a1657;
+}
+
+.product {
+    padding: 0!important;
+    border: rgb(255, 255, 255) 6px solid;
+    margin: 1rem;
+    cursor: pointer;
+}
+
+#container-list {
+    overflow: auto;
+    padding: 1%;
+    height: 215px;
+    margin: auto;
+}
+
+.card-category {
+    
+    margin: 1rem;
+    border-radius: 10px;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: solid 3px rgb(250, 236, 43)!important; */
+}
+
+.text-category {
+    font-weight: 900;
+    font-size: 16px;
+}
+
+.card-category:hover {
+    cursor: pointer;
+    box-shadow: 5px 1px 8px #7e7e7e;
+}
+
+.icon-svg {
+    width: 80px;
+}
+
+.buttom:hover {
+    cursor: pointer;
+    box-shadow: 5px 1px 8px #c3c3c3;
+    border: 5px solid white;
+    
+}
+
+.icon-center {
+    font-size: 60px;
+    color: #f1aebc;
+    height: 200px;
+    box-sizing: border-box;
+    border: 7px solid transparent;
+    background-clip: padding-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

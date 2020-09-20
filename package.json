@@ -1,0 +1,52 @@
+{
+  "name": "Salkantay",
+  "version": "1.0.0",
+  "description": "A app",
+  "main": "src/main.js",
+  "keywords": [],
+  "author": "Enupal <info@enupal.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "salkantay-electronv1",
+    "asar": true,
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "target": "NSIS"
+    }
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.14.0",
+    "bootstrap": "^4.5.2",
+    "ejs-electron": "^2.1.1",
+    "electron": "^10.1.2",
+    "electron-reload": "^1.5.0",
+    "jquery": "^3.5.1"
+  },
+  "devDependencies": {
+    "electron-builder": "^22.8.1"
+  }
+}
