@@ -25,7 +25,7 @@ Css Menu
     border: none;
     background-color:  var(--side-menu);
     color: var(--text-side) !important;
-    box-shadow:  10px 5px 8px #2f2f2f;
+    
 }
 .nav-bar-color{
     background-color:  var(--nav-bar);

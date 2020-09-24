@@ -8,10 +8,13 @@
 </div>
 <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
 <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="js/ctxmenu.min/ctxmenu.min.js"></script>
+<script src="../../node_modules/alertifyjs/build/alertify.min.js"></script>
 <script src="js/app.js"></script>
 
 <script>
+    alertify.defaults.theme.ok = "btn btn-primary";
+    alertify.defaults.theme.cancel = "btn btn-danger";
+    alertify.defaults.theme.input = "form-control"
     const openNewWindow = (id) => redirect(id);
-    
+
 </script>
