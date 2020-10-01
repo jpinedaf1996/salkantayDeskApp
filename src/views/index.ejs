@@ -60,22 +60,24 @@
                 <h1 class="text-center icon-center"><%= name %>
                 </h1>
             </div>
-            <div id="reportes" onclick="openNewWindow(this.id)" class="open buttom col-md-3 icon-center  bg-info">
+            <div id="reportes" onclick="openNewWindow('reportes')" class="open buttom col-md-3 icon-center  bg-info">
                 <img class="icon-svg" src="../../image/monitor.svg" alt="reports">
             </div>
-            <div id="productos" onclick="openNewWindow(this.id)" class="open buttom col-md-3 icon-center  bg-danger">
+            <div id="productos" onclick="openNewWindow('productos')"
+                class="open buttom col-md-3 icon-center  bg-danger">
                 <img class="icon-svg" src="../../image/factory.svg" alt="stock">
             </div>
-            <div id="clientes" onclick="openNewWindow(this.id)" class="open buttom col-md-6 icon-center   bg-warning">
+            <div id="clientes" onclick="openNewWindow('clientes')"
+                class="open buttom col-md-6 icon-center   bg-warning">
                 <img class="icon-svg" src="../../image/values.svg" alt="customers">
             </div>
-            <div id="ventas" onclick="openNewWindow(this.id)" class="open buttom col-md-6 icon-center   bg-secondary">
+            <div id="ventas" onclick="openNewWindow('ventas')" class="open buttom col-md-6 icon-center   bg-secondary">
                 <img class="icon-svg" src="../../image/money.svg" alt="sales">
             </div>
-            <div id="ordenes" onclick="openNewWindow(this.id)" class="open buttom col-md-3 icon-center  bg-success">
+            <div id="ordenes" onclick="openNewWindow('ordenes')" class="open buttom col-md-3 icon-center  bg-success">
                 <img class="icon-svg" src="../../image/invoice.svg" alt="orders">
             </div>
-            <div id="config" onclick="openNewWindow(this.id)" class="open buttom col-md-3 icon-center  bg-dark">
+            <div id="config" onclick="openNewWindow('config')" class="open buttom col-md-3 icon-center  bg-dark">
                 <img class="icon-svg" src="../../image/config.svg" alt="config">
             </div>
         </div>
@@ -84,48 +86,49 @@
     <script>
         const formElement = document.getElementById('login');
 
+        let idMenu = null;
         const openNewWindow = async (id) => {
-
+            idMenu = id;
             let responseToken = await validarToken();
 
             if (responseToken.error) {
-
+                
                 $('#myModal').modal('show');
 
-                formElement.addEventListener("submit", async (event) => {
-                    event.preventDefault();
-
-                    const response = await fetch(links.urluser + 'login', {
-                        method: 'POST',
-                        body: new URLSearchParams({
-                            'usuario': document.getElementById('user').value,
-                            'pass': document.getElementById('pass').value
-                        })
-                    });
-
-                    let result = await response.json();
-
-                    if (result.error) {
-                        const content = document.getElementById('alert');
-                        const alert = `
-                            <div class="alert alert-primary" role="alert">
-                                ${result.error}
-                            </div>               
-                        `;
-                        content.innerHTML = alert;
-                    } else {
-                        sessionStorage.setItem("token", result.success);
-                        redirect(id);
-
-                    }
-                });
             } else {
-                redirect(id);
+                
+                redirect(idMenu);
 
             }
 
         }
+        formElement.addEventListener("submit", async (event) => {
+            event.preventDefault();
 
+            const response = await fetch(links.urluser + 'login', {
+                method: 'POST',
+                body: new URLSearchParams({
+                    'usuario': document.getElementById('user').value,
+                    'pass': document.getElementById('pass').value
+                })
+            });
+
+            let result = await response.json();
+
+            if (result.error) {
+                const content = document.getElementById('alert');
+                const alert = `
+                            <div class="alert alert-primary" role="alert">
+                                ${result.error}
+                            </div>               
+                        `;
+                content.innerHTML = alert;
+            } else {
+                
+                sessionStorage.setItem("token", result.success);
+                redirect(idMenu);
+            }
+        });
     </script>
 </body>
 

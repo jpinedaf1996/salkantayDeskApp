@@ -23,7 +23,7 @@ body {
 .product {
     padding: 0!important;
     margin: 1rem;
-    cursor: pointer;
+    cursor: cell;
     border: 0 !important;
 }
 #btn-delete{
@@ -67,8 +67,7 @@ body {
 
 .buttom:hover {
     cursor: pointer;
-    box-shadow: 5px 1px 8px #c3c3c3;
-    border: 5px solid white;
+    border: 8px solid white;
     
 }
 

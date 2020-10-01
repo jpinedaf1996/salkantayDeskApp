@@ -4,13 +4,18 @@ const links = {
      urlCategory: 'http://localhost:3000/apiv0.1/category/'
 }
 
+const closeSesion=()=>{
+     window.location.href = "index.ejs";
+     sessionStorage.setItem('token',0);
+}
 const redirect = (id) => {
      switch (id) {
           case 'reportes':
-               window.location.href = "reportes.ejs";
+               window.location.href = `${id}.ejs`;
                break;
           case 'productos':
-               window.location.href = "productos.ejs";
+               
+               window.location.href = `${id}.ejs`;
                break;
           default:
                window.location.href = "index.ejs";
