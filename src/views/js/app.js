@@ -1,12 +1,30 @@
 const links = {
      urluser: 'http://localhost:3000/apiv0.1/users/',
      products: 'http://localhost:3000/apiv0.1/products/',
-     urlCategory: 'http://localhost:3000/apiv0.1/category/'
+     urlCategory: 'http://localhost:3000/apiv0.1/category/',
+     urlMesas: 'http://localhost:3000/apiv0.1/mesas/'
 }
 
-const closeSesion=()=>{
+function GetInfoByFetch(url, method = 'GET', body) {
+     this.url = url;
+     this.params = {
+          method,
+          headers: {
+               'token': sessionStorage.getItem("token"),
+          },
+          body: body
+
+     };
+     this.request = async () => {
+          let result = await fetch(this.url, this.params);
+          return result.json();
+     };
+
+};
+
+const closeSesion = () => {
      window.location.href = "index.ejs";
-     sessionStorage.setItem('token',0);
+     sessionStorage.setItem('token', 0);
 }
 const redirect = (id) => {
      switch (id) {
@@ -14,7 +32,9 @@ const redirect = (id) => {
                window.location.href = `${id}.ejs`;
                break;
           case 'productos':
-               
+               window.location.href = `${id}.ejs`;
+               break;
+          case 'config':
                window.location.href = `${id}.ejs`;
                break;
           default:

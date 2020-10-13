@@ -133,7 +133,6 @@
     <div id="container-list" class="row text-center justify-content-center">
 
     </div>
-    <hr>
     <!-- productos -->
     <div class="container">
         <div id="container-productos" class="text-white row text-center justify-content-center">
@@ -166,14 +165,15 @@
             return result.json();
         };
 
-    }
-    ;
+    };
+
     $(document).ready(async () => {
         getListCategory();
     })
     const getListCategory = async () => {
         let response = await new GetInfoByFetch(links.urlCategory).request();
         document.getElementById('container-list').innerHTML = " ";
+    
         response.map((category) => {
             const categoria = `
             <div id="${category.categoriaId}" onclick="getProductsByCategory(${category.categoriaId})" class="text-warning  col-sm-2 card-category border border-warning">
@@ -351,6 +351,7 @@
         }
         return listResult;
     }
+    
     document.querySelector("#formcategory").addEventListener("submit", async (event) => {
         event.preventDefault();
 
