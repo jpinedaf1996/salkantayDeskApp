@@ -145,28 +145,6 @@
 
 <script>
 
-    /*
-        Funcion inicial se ejecuta al llamar la rutas productos  y hace 
-        la insercion de las categorias 
-    */
-    //Funcion para obtener las categorias  
-    function GetInfoByFetch(url, method = 'GET', body) {
-        this.url = url;
-        this.params = {
-            method,
-            headers: {
-                'token': sessionStorage.getItem("token"),
-            },
-            body: body
-
-        };
-        this.request = async () => {
-            let result = await fetch(this.url, this.params);
-            return result.json();
-        };
-
-    };
-
     $(document).ready(async () => {
         getListCategory();
     })
