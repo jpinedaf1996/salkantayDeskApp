@@ -77,7 +77,7 @@ aqui se gestionanran los diferente produstos
       document.getElementById('container-list-table').innerHTML = "<p class='text-white'> No hay mesas disponibles </p>";
     }
 
-    response.map((mesa) => {//    ejemplo de template string js
+    response.map((mesa) => {
       const table = `<div class="card product text-dark animate__animated animate__bounce" style="width: 11rem;">
                 <div class="card-body" onclick="editTable(${mesa.mesaId})" >
                     <p class="card-text"><strong>MESA: SA-${mesa.num_mesa}</strong></p>
@@ -147,7 +147,7 @@ aqui se gestionanran los diferente produstos
     document.querySelector("#formTable").reset();
 
     const response = await new GetInfoByFetch(`${links.urlMesas}findOne/${tableId}`).request();
-    
+
     Object.entries(response).forEach(([key, value]) => {
       $(`#${key}`).val(`${value}`);
 
