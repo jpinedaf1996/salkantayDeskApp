@@ -7,153 +7,277 @@ aqui se gestionanran los diferente produstos
 -->
 <!-- Aqui Agregar el contenido para las paginas del sistemas  -->
 <div class="modal fade" id="modalAddTable" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-  aria-hidden="true">
-  <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Agregar Mesa</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form id="formTable">
+    aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Agregar Mesa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formTable">
 
-          <input type="hidden" value="0" name="idforedit" id="idforedit">
+                    <input type="hidden" value="0" name="idforedit" id="idforedit">
 
-          <div class="form-group">
-            <label for="num_mesa"></i> Codigo de la mesa:</label>
-            <input type="text" class="form-control " name="num_mesa" id="num_mesa" placeholder="Codigo de la mesa"
-              required>
-          </div>
+                    <div class="form-group">
+                        <label for="num_mesa"></i> Codigo de la mesa:</label>
+                        <input type="text" class="form-control " name="num_mesa" id="num_mesa"
+                            placeholder="Codigo de la mesa" required>
+                    </div>
 
-          <div class="form-group">
-            <label for="descripcion">Descripcion (opcional)</label>
-            <textarea id="descripcion" name="descripcion" class="form-control" rows="2" ></textarea>
-          </div>
+                    <div class="form-group">
+                        <label for="descripcion">Descripcion (opcional)</label>
+                        <textarea id="descripcion" name="descripcion" class="form-control" rows="2"></textarea>
+                    </div>
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <input id="seveTable" type="submit" class="btn btn-primary" value="Guardar">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <input id="seveTable" type="submit" class="btn btn-primary" value="Guardar">
 
-      </div>
-      <!-- Fin del formulario -->
-      </form>
+            </div>
+            <!-- Fin del formulario -->
+            </form>
+        </div>
     </div>
-  </div>
 </div>
+
+
 <!-- cards TAbles -->
-<div class="main-container-list">
-  <div class="text-white row justify-content-center">
-    <div style="margin: auto;">
-      <button id="btn-newTable" style="margin: 10px;" class="btn btn-lg btn-primary">
-        Agregar Mesa <i class="fas fa-plus"></i>
-      </button>
-    </div>
-  </div>
-  <hr>
-  <!-- categorias -->
-  <div id="container-list-table" class="row text-center justify-content-center">
+<div class="container text-white ">
+    <div class="row justify-content-center w-100">
 
-    <!-- productos -->
-  </div>
+        <div data-toggle="tooltip" data-placement="right" title="MESAS DISPONIBLES" id="tablesOption"
+            onclick="changeOptionConfig(this.id)" class="card oprtions text-dark animate__animated animate__bounce"
+            style="width: 10rem;">
+            <div class="card-body">
+                <p class="card-text"><strong><i class="fas fa-table"></i></strong></p>
+            </div>
+        </div>
+        <div id="userOption" onclick="changeOptionConfig(this.id)"
+            class="card oprtions text-dark animate__animated animate__bounce" style="width: 10rem;">
+            <div class="card-body">
+                <p class="card-text"><strong><i class="fas fa-users"></i></strong></p>
+            </div>
+        </div>
+        <div id="promOption" onclick="changeOptionConfig(this.id)"
+            class="card oprtions text-dark animate__animated animate__bounce" style="width: 10rem;">
+            <div class="card-body">
+                <p class="card-text"><i class="fas fa-wallet"></i></strong></p>
+            </div>
+        </div>
+
+    </div>
 </div>
+<hr>
+<div class="container">
+    <div id="optables" class="main-container-list">
+        <button id="btn-newTable" class="btn btn-lg btn-primary form-control">
+            Agregar Mesa <i class="fas fa-plus"></i>
+        </button>
+        
+        <!-- categorias -->
+        <div class="card card-md">
+            <div class="card-body">
+                <table class="borderless table text-dark text-center ">
+                    <thead>
+                        <tr>
+                            <th scope="col">Mesa</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="container-list-table">
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    <div id="opUser" class="d-none main-container-list">
+        <div class="text-white ">
+            <div style="margin: auto;">
+                <button style="margin: 10px;" class="btn btn-lg btn-primary">
+                    Agregar usuario <i class="fas fa-plus"></i>
+                </button>
+            </div>
+        </div>
+        <hr>
+        <!-- categorias -->
+        <div class="card card-md">
+            <div class="card-body">
+                <div class="row text-center justify-content-center">
+
+                    <!-- productos -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="opProm" class="d-none main-container-list">
+        <div class="text-white row justify-content-center">
+            <div style="margin: auto;">
+                <button style="margin: 10px;" class="btn btn-lg btn-primary">
+                    Agregar Promocion <i class="fas fa-plus"></i>
+                </button>
+            </div>
+        </div>
+        <hr>
+        <!-- categorias -->
+        <div class="card card-md">
+            <div class="card-body">
+                <div class="row text-center justify-content-center">
+
+                    <!-- productos -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr>
 
 <%- include('./templates/scripts.ejs'); -%>
+<script>
+    let lastElemnt = document.getElementById('optables');
+    const changeOptionConfig = (option) => {
+        if (lastElemnt) {
+            lastElemnt.classList.add('d-none');
+        }
+        switch (option) {
+            case 'tablesOption':
+
+                if ($("#optables").hasClass("d-none")) {
+                    $("#optables").removeClass("d-none");
+                    getListTable();
+                    lastElemnt = document.getElementById('optables');
+                }
+                break;
+            case 'userOption':
+                if ($("#opUser").hasClass("d-none")) {
+                    $("#opUser").removeClass("d-none");
+                    lastElemnt = document.getElementById('opUser');
+                }
+                break;
+            case 'promOption':
+                if ($("#opProm").hasClass("d-none")) {
+                    $("#opProm").removeClass("d-none");
+                    lastElemnt = document.getElementById('opProm');
+                }
+                break;
+
+            default:
+                break;
+        }
+
+
+    }
+</script>
 
 <script>
-  $(document).ready(async () => {
 
-    getListTable();
-
-  });
-
-  const getListTable = async () => {
-    let response = await new GetInfoByFetch(links.urlMesas).request();
-    document.getElementById('container-list-table').innerHTML = " ";
-    if (response.length === 0) {
-
-      document.getElementById('container-list-table').innerHTML = "<p class='text-white'> No hay mesas disponibles </p>";
-    }
-
-    response.map((mesa) => {
-      const table = `<div class="card product text-dark animate__animated animate__bounce" style="width: 11rem;">
-                <div class="card-body" onclick="editTable(${mesa.mesaId})" >
-                    <p class="card-text"><strong>MESA: SA-${mesa.num_mesa}</strong></p>
-                    <p class="card-text"><strong>${mesa.descripcion ? mesa.descripcion : "Sin descripcion" }</strong></p>
-                    
-                </div><hr>
-                <i id="btn-delete" class="btn btn-danger" onclick="DeleteTable(${mesa.mesaId})"><i
-                    class="fas fa-trash"></i></button>`;
-      document.getElementById('container-list-table').insertAdjacentHTML('beforeEnd', table);
-
-    })
-  };
-  const DeleteTable = (tableId) => {
-
-    alertify.confirm("<i class='fas fa-exclamation-circle text-danger'></i> Advertencia ", "¿Decea borrar esta mesa?.",
-      async function () {
-        let response = await new GetInfoByFetch(`${links.urlMesas}${tableId}`, 'DELETE').request();
-        alertify.success(response.success);
-        
+    $(document).ready(()=>{
         getListTable();
-      },
-      function () {
-      });
-  }
+    })
 
-  $("#btn-newTable").on('click', () => {
-    $("#modalAddTable").modal("show");
-  });
+    const getListTable = async () => {
+        let response = await new GetInfoByFetch(links.urlMesas).request();
+        document.getElementById('container-list-table').innerHTML = " ";
+        if (response.length === 0) {
 
-  document.querySelector("#formTable").addEventListener("submit", async (event) => {
-    event.preventDefault();
+            document.getElementById('container-list-table').innerHTML = "<p class='text-white'> No hay mesas disponibles </p>";
+        }
 
-    let data = new FormData(event.currentTarget);
+        response.map((mesa) => {
+            const table = `<tr >
+                        <td>${mesa.num_mesa}</td>
+                        <td>${mesa.descripcion ? mesa.descripcion : "Sin descripcion"}</td>
+                        <td>${mesa.estado == 1 ? "Mesa ocupada" : "Mesa libre"}</td>
+                        <td>
+                            <button class="btn btn-warning" onclick="editTable(${mesa.mesaId})">
+                                <i class="far fa-edit"></i>
+                            </button>
+                            <button id="btn-delete" class="btn btn-danger" onclick="DeleteTable(${mesa.mesaId})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                        
+                    </tr>
+    
+                `;
+            document.getElementById('container-list-table').insertAdjacentHTML('beforeEnd', table);
 
-    if (parseInt(data.get("idforedit")) === 0) {
-      editOsaveTable(new URLSearchParams({
-        'num_mesa': data.get("num_mesa"),
-        'descripcion': data.get("descripcion")
-      }), method = 'POST', link = links.urlMesas);
+        })
+    };
+    const DeleteTable = (tableId) => {
 
-    } else {
-      editOsaveTable(new URLSearchParams({
-        'num_mesa': data.get("num_mesa"),
-        'descripcion': data.get("descripcion")
-      }), method = 'PUT', link = `${links.urlMesas}${data.get('idforedit')}`);
+        alertify.confirm("<i class='fas fa-exclamation-circle text-danger'></i> Advertencia ", "¿Decea borrar esta mesa?.",
+            async function () {
+                let response = await new GetInfoByFetch(`${links.urlMesas}${tableId}`, 'DELETE').request();
+                alertify.success(response.success);
+
+                getListTable();
+            },
+            function () { });
     }
-  });
 
-  const editOsaveTable = async (data, method, link) => {
-
-    let response = await new GetInfoByFetch(`${link}`, method, data).request();
-
-    if (response.ok === false) {
-      alertify.alert("<i class='fas fa-exclamation-circle text-danger'></i> Error al enviar el formulario ",
-        "Recomendaciones:<br>Tamaño maximo de la imagen 5Mb<br>Formato : jpeg jpg png o gif!");
-    } else {
-      getListTable();
-      console.log(response.success)
-      document.querySelector("#formTable").reset();
-      $("#modalAddTable").modal("hide");
-
-
-    }
-  }
-
-  const editTable = async (tableId) => {
-    document.querySelector("#formTable").reset();
-
-    const response = await new GetInfoByFetch(`${links.urlMesas}findOne/${tableId}`).request();
-
-    Object.entries(response).forEach(([key, value]) => {
-      $(`#${key}`).val(`${value}`);
-
+    $("#btn-newTable").on('click', () => {
+        $("#idforedit").val(0);
+        $("#modalAddTable").modal("show");
     });
 
-    $("#idforedit").val(tableId); //input hiden en el formulario
-    $("#modalAddTable").modal("show");
-  }
+    document.querySelector("#formTable").addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        let data = new FormData(event.currentTarget);
+
+        if (parseInt(data.get("idforedit")) === 0) {
+            editOsaveTable(new URLSearchParams({
+                'num_mesa': data.get("num_mesa"),
+                'descripcion': data.get("descripcion")
+            }), method = 'POST', link = links.urlMesas);
+
+        } else {
+            editOsaveTable(new URLSearchParams({
+                'num_mesa': data.get("num_mesa"),
+                'descripcion': data.get("descripcion")
+            }), method = 'PUT', link = `${links.urlMesas}${data.get('idforedit')}`);
+        }
+    });
+
+    const editOsaveTable = async (data, method, link) => {
+
+        let response = await new GetInfoByFetch(`${link}`, method, data).request();
+
+        if (response.ok === false) {
+            alertify.alert("<i class='fas fa-exclamation-circle text-danger'></i> Error al enviar el formulario ",
+                "Error al enviar el formulario!");
+        } else {
+
+            getListTable();
+            console.log(response.success)
+            document.querySelector("#formTable").reset();
+            $("#modalAddTable").modal("hide");
+
+
+        }
+    }
+
+    const editTable = async (tableId) => {
+        document.querySelector("#formTable").reset();
+
+        const response = await new GetInfoByFetch(`${links.urlMesas}findOne/${tableId}`).request();
+
+        Object.entries(response).forEach(([key, value]) => {
+            $(`#${key}`).val(`${value}`);
+
+        });
+
+        $("#idforedit").val(tableId); //input hiden en el formulario
+        $("#modalAddTable").modal("show");
+    }
 </script>

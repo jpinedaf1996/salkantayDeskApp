@@ -2,7 +2,9 @@ const links = {
      urluser: 'http://localhost:3000/apiv0.1/users/',
      products: 'http://localhost:3000/apiv0.1/products/',
      urlCategory: 'http://localhost:3000/apiv0.1/category/',
-     urlMesas: 'http://localhost:3000/apiv0.1/mesas/'
+     urlMesas: 'http://localhost:3000/apiv0.1/mesas/',
+     urlOrden: 'http://localhost:3000/apiv0.1/orden/',
+     urlOrdenDet: 'http://localhost:3000/apiv0.1/ordendet/'
 }
 
 function GetInfoByFetch(url, method = 'GET', body) {
@@ -32,6 +34,9 @@ const redirect = (id) => {
                window.location.href = `${id}.ejs`;
                break;
           case 'productos':
+               window.location.href = `${id}.ejs`;
+               break;
+          case 'ventas':
                window.location.href = `${id}.ejs`;
                break;
           case 'config':

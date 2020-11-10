@@ -3,14 +3,7 @@
 Css Menu 
 
 *********/
-:root{
-    --side-menu: #0f0f0fdf;
-    --nav-bar:rgb(250, 176, 57);
-    --text-side:#ffff;
-    --hover-boder:var(--nav-bar);
-    --bg-hover:rgba(59, 59, 59, 0.301);
-    --body-color:#f2f1ef,
-}
+
 
 .main-container-list{
     background-color: var(--body-color);

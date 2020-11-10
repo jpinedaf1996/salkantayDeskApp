@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css");
 @import "menu.css";
+@import "ventas.css";
 
 /******
 
@@ -8,7 +9,14 @@ Index Css
 
 
 *********/
-
+:root{
+    --side-menu: #0f0f0fdf;
+    --nav-bar:rgb(250, 176, 57);
+    --text-side:#ffff;
+    --hover-boder:var(--nav-bar);
+    --bg-hover:rgba(59, 59, 59, 0.301);
+    --body-color:#f2f1ef,
+}
 body {
     margin: 0;
     padding: 0;
@@ -25,6 +33,20 @@ body {
     margin: 1rem;
     cursor: cell;
     border: 0 !important;
+}
+.oprtions i{
+    color: #0f0f0f;
+    margin: 1rem;
+    font-size: 30px;
+}
+.oprtions {
+    margin-top: 35px!important;
+    margin: 1rem;
+    cursor: pointer;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 #btn-delete{
     border-radius: 0!important;
