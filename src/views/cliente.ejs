@@ -1,0 +1,196 @@
+<%- include('./templates/header'); -%>
+
+<body>
+
+  <!-- Product Form  <main class="container-fluid"> -->
+
+  <div class="row">
+    <div class="col-md-6 p-4 my-auto">
+      <h3 style="color: whitesmoke;">Formulario de Clientes</h3>
+      <div class="row"></div>
+      <!--<button onclick="return ShowHide('UserForm')" type="button" class="btn btn-secondary">Mostrar/Ocultar</button> -->
+      <div class="row"></div>
+      <div></div>
+      <!-- Product Form -->
+      <form id="ClienteForm" class="card card-body">
+        <div class="form-group">
+          <a>Nombre del cliente</a>
+          <input type="text" id="nombre" name="nombre" placeholder="Ejem. Juan Costa" class="form-control" autofocus>
+        </div>
+
+        <div class="form-group">
+          <a>N# Telefono</a>
+          <input type="number" id="telefono" name="telefono" placeholder="Ejem. 71330045" class="form-control" autofocus>
+        </div>
+
+        <div class="form-group">
+          <a>Nit</a>
+          <input type="text" id="nit" name="nit" placeholder="Ejem. 2015vd22352" class="form-control" autofocus>
+        </div>
+
+        <div>
+          <input type="hidden" value="0" name="idforedit" id="idforedit">
+        </div>
+
+        <button id="btn-Cte" type="submit" class="btn btn-primary">
+          Guardar
+        </button>
+      </form>
+
+    </div>
+
+    <!-- Product List -->
+    <div class="col-md-6">
+      <div id="ContentClient">
+      <div class="row justify-content-center">
+        <div style="margin: auto;">
+          <h4 style="background-color: whitesmoke;">Clientes</h4>
+          
+      <table id="ClientTable" style="background-color: whitesmoke;" class="table table-striped">
+        <thead>
+          <tr>
+              <th>Nombre</th>
+              <th>Telefono</th>
+              <th>Nit</th>
+              <th>Editar</th>
+              <th>Borrar</th>
+          </tr>
+      </thead>
+      <tbody id="myTable">
+
+      </tbody>
+
+      <tfoot>
+          <tr>
+            <th>Nombre</th>
+            <th>Telefono</th>
+            <th>Nit</th>
+            <th>Editar</th>
+            <th>Borrar</th>
+          </tr>
+      </tfoot>
+      </table> 
+    </div>
+    </div>
+  </div>
+
+
+  <!-- </main> -->
+
+</body>
+
+
+<%- include('./templates/scripts.ejs'); -%>
+
+<script>
+
+
+  $(document).ready(async () => {
+    getListClientes();
+  })
+
+
+  const getListClientes = async () => {
+    let response = await new GetInfoByFetch(links.urlCliente).request();
+    return cliente
+  };
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+let ListClients = null;
+  const DrawTable = async (clienteId) => {
+    let content = document.getElementById("myTable");
+    let response = await new GetInfoByFetch(`${links.urlCliente}${clienteId}`).request();
+    Content.innerHTML = ".";
+    response.ForEach( clientes => {
+      let Cliente =` <tr> 
+                        <td>${clientes.cliente.nombre}</td>
+                        <td>${clientes.cliente.telefono}</td>
+                        <td>${clientes.cliente.nit}</td>
+                        <td>borrar </td>
+                        <td>editar </td>
+                    </tr>`;
+                content.insertAdjacentHTML('beforeEnd', Cliente);
+    });
+    return ListClients = response;
+  }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+const DeleteUser = (clienteId) => {
+
+alertify.confirm("<i class='fas fa-exclamation-circle text-danger'></i> Advertencia ", "¿Decea borrar este cliente ?.",
+  async function () {
+    let response = await new GetInfoByFetch(`${links.urlCliente}${clienteId}`, 'DELETE').request();
+    alertify.success(response.success);
+    
+    getListClientes();
+  },
+  function () {
+  });
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  document.querySelector("#ClienteForm").addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    let data = new FormData(event.currentTarget);
+
+    if (parseInt(data.get("idforedit")) === 0) {
+      editOsaveTable(new URLSearchParams({
+        'nombre': data.get("nombre"),
+        'telefono': data.get("telefono"),
+        'nit': data.get("nit"),
+
+      }), method = 'POST', link = links.urlCliente);
+
+    } else {
+      editOsaveTable(new URLSearchParams({
+        'nombre': data.get("nombre"),
+        'telefono': data.get("telefono"),
+        'nit': data.get("nit")
+      }), method = 'PUT', link = `${links.urlCliente}${data.get('idforedit')}`);
+    }
+  }); 
+///////////////////////////////////////////////////////////////////////////////////////////////////////// 
+
+  const editOsaveTable = async (data, method, link) => {
+
+    let response = await new GetInfoByFetch(`${link}`, method, data).request();
+
+    if (response.ok === false) {
+      alertify.alert("<i class='fas fa-exclamation-circle text-danger'></i> Error al enviar el formulario ",
+        "Recomendaciones:<br>Tamaño maximo de la imagen 5Mb<br>Formato : jpeg jpg png o gif!");
+    } else {
+      getListClientes();
+      console.log(response.success)
+      document.querySelector("#ClienteForm").reset();
+      
+
+
+    }
+  }
+////////////////////////////////////Editar//////////////////////////////////////////////////////////////////////
+const editTable = async (clienteId) => {
+    document.querySelector("#ClienteForm").reset();
+
+    const response = await new GetInfoByFetch(`${links.urlCliente}findOne/${clienteId}`).request();
+    
+    Object.entries(response).forEach(([key, value]) => {
+      $(`#${key}`).val(`${value}`);
+
+    });
+
+    $("#idforedit").val(clienteId); //input hiden en el formulario
+    $("#ClienteForm").FormData("show");
+  }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+</script>
+
+</body>
+
+</html>
