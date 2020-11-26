@@ -105,14 +105,14 @@
         formElement.addEventListener("submit", async (event) => {
             event.preventDefault();
 
-            const response = await fetch(links.urluser + 'login', {
+            const response = await fetch(url.apiuser + 'login', {
                 method: 'POST',
                 body: new URLSearchParams({
                     'usuario': document.getElementById('user').value,
                     'pass': document.getElementById('pass').value
                 })
             });
-
+            
             let result = await response.json();
 
             if (result.error) {

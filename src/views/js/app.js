@@ -1,10 +1,12 @@
-const links = {
-     urluser: 'http://localhost:3000/apiv0.1/users/',
+const url = {
+     apiuser: 'http://localhost:3000/apiv0.1/users/',
      products: 'http://localhost:3000/apiv0.1/products/',
-     urlCategory: 'http://localhost:3000/apiv0.1/category/',
-     urlMesas: 'http://localhost:3000/apiv0.1/mesas/',
-     urlOrden: 'http://localhost:3000/apiv0.1/orden/',
-     urlOrdenDet: 'http://localhost:3000/apiv0.1/ordendet/'
+     apicategory: 'http://localhost:3000/apiv0.1/category/',
+     apimesas: 'http://localhost:3000/apiv0.1/mesas/',
+     apiordenes: 'http://localhost:3000/apiv0.1/orden/',
+     apiordendetalle: 'http://localhost:3000/apiv0.1/ordendet/',
+     apiclientes: 'http://localhost:3000/apiv0.1/cliente',
+     apipromo: 'http://localhost:3000/apiv0.1/promociones/' 
 }
 
 function GetInfoByFetch(url, method = 'GET', body) {
@@ -36,6 +38,9 @@ const redirect = (id) => {
           case 'productos':
                window.location.href = `${id}.ejs`;
                break;
+          case 'clientes':
+               window.location.href = `${id}.ejs`;
+               break;
           case 'ventas':
                window.location.href = `${id}.ejs`;
                break;
@@ -49,15 +54,13 @@ const redirect = (id) => {
 }
 
 const validarToken = async () => {
-     const response = await fetch(links.urluser + 'validarToken', {
+     const response = await fetch(url.apiuser + 'validarToken', {
           method: 'GET',
           headers: {
                'Content-Type': 'application/json',
                'token': sessionStorage.getItem("token")
           }
-
      });
-
      return response.json();
 }
 
@@ -76,7 +79,6 @@ if (btnMenu) {
                contentPage.classList.add('col-md-10');
 
           } else {
-
                sideBar.classList.remove("col-md-2");
                sideBar.classList.add("d-none");
                contentPage.classList.add('col-md-12');

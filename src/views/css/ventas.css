@@ -65,6 +65,14 @@
     background-color: #7bb7ab;
 } */
 
+.card-promociones{
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%; height: 70px; border-bottom:1px solid black;
+}
 .card-center-vh{
     font-size: 18px;
     display: flex;
@@ -111,7 +119,7 @@
     justify-content: center;
     cursor: pointer;
 }
-.badge{
+.badge-text-size{
     font-size: 20px;
 }
 .numbers{

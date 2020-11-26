@@ -149,7 +149,7 @@
         getListCategory();
     })
     const getListCategory = async () => {
-        let response = await new GetInfoByFetch(links.urlCategory).request();
+        let response = await new GetInfoByFetch(url.apicategory).request();
         document.getElementById('container-list').innerHTML = " ";
     
         response.map((category) => {
@@ -162,13 +162,12 @@
 
         })
     }
-
     //Funcion borrar un producto
     const DeleteProduct = (producId, categoriaId) => {
 
         alertify.confirm("<i class='fas fa-exclamation-circle text-danger'></i> Advertencia ", "¿Decea borrar este producto?.",
             async function () {
-                let response = await new GetInfoByFetch(`${links.products}${producId}`, 'DELETE').request();
+                let response = await new GetInfoByFetch(`${url.products}${producId}`, 'DELETE').request();
                 alertify.success(response.success);
                 getProductsByCategory(categoriaId);
             },
@@ -189,7 +188,7 @@
     const fieldInputCategory = async () => {
 
         const content = document.getElementById("categoriaId");
-        let response = await new GetInfoByFetch(links.urlCategory).request();
+        let response = await new GetInfoByFetch(url.apicategory).request();
 
         content.innerHTML = "<option value='0' disabled selected>CATEGORIAS</option>";
 
@@ -210,7 +209,7 @@
     const editProduct = async (productoid) => {
         document.querySelector("#formProducto").reset();
         fieldInputCategory();
-        const response = await new GetInfoByFetch(`${links.products}findOne/${productoid}`).request();
+        const response = await new GetInfoByFetch(`${url.products}findOne/${productoid}`).request();
 
         Object.entries(response).forEach(([key, value]) => {
             $(`#${key}`).val(`${value}`);
@@ -249,9 +248,9 @@
         let data = new FormData(event.currentTarget);
 
         if (parseInt(data.get("idforedit")) === 0) {
-            editOsaveProducto(data, method = 'POST', link = links.products);
+            editOsaveProducto(data, method = 'POST', link = url.products);
         } else {
-            editOsaveProducto(data, method = 'PUT', link = `${links.products}${data.get('idforedit')}`);
+            editOsaveProducto(data, method = 'PUT', link = `${url.products}${data.get('idforedit')}`);
         }
     });
 
@@ -277,7 +276,7 @@
 
     const getProductsByCategory = async (id) => {
         const content = document.getElementById('container-productos');
-        let response = await new GetInfoByFetch(`${links.products}productosBycategori/${id}`).request();
+        let response = await new GetInfoByFetch(`${url.products}productosBycategori/${id}`).request();
         //HACE EL FOCUS AL HACER CLICK A UNA TARGETA DE CATEGORIAS
         if (selectedCat === null) {
             $(`#${id}`).addClass("selected");
@@ -335,7 +334,7 @@
 
         let data = new FormData(event.currentTarget);
 
-        let response = await new GetInfoByFetch(`${links.urlCategory}`, 'POST',
+        let response = await new GetInfoByFetch(`${url.apicategory}`, 'POST',
             new URLSearchParams({
                 'categoria': data.get("categoria"),
             })).request();
@@ -356,7 +355,7 @@
 
     const fieldCheckCategory = async () => {
         const content = document.getElementById("contenteCategory");
-        let response = await new GetInfoByFetch(links.urlCategory).request();
+        let response = await new GetInfoByFetch(url.apicategory).request();
 
         content.innerHTML = " ";
 
@@ -379,7 +378,7 @@
     }
     const deleteCategory = async () => {
 
-        let response = await new GetInfoByFetch(`${links.urlCategory}`, 'DELETE', new URLSearchParams({
+        let response = await new GetInfoByFetch(`${url.apicategory}`, 'DELETE', new URLSearchParams({
             'data': getCheckBoxChecked()
         })).request();
 
