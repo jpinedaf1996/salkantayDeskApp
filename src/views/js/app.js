@@ -6,7 +6,9 @@ const url = {
      apiordenes: 'http://localhost:3000/apiv0.1/orden/',
      apiordendetalle: 'http://localhost:3000/apiv0.1/ordendet/',
      apiclientes: 'http://localhost:3000/apiv0.1/cliente',
-     apipromo: 'http://localhost:3000/apiv0.1/promociones/' 
+     apipromo: 'http://localhost:3000/apiv0.1/promociones/' ,
+     apiInfo: 'http://localhost:3000/apiv0.1/info/' ,
+     apimenu: 'http://localhost:3000/apiv0.1/menu/' 
 }
 
 function GetInfoByFetch(url, method = 'GET', body) {
@@ -45,6 +47,12 @@ const redirect = (id) => {
                window.location.href = `${id}.ejs`;
                break;
           case 'config':
+               window.location.href = `${id}.ejs`;
+               break;
+          case 'menu':
+               window.location.href = `${id}.ejs`;
+               break;
+          case 'info':
                window.location.href = `${id}.ejs`;
                break;
           default:
